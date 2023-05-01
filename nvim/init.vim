@@ -11,7 +11,7 @@ set clipboard+=unnamedplus
 set hidden
 set keymodel=startsel
 
-:au VimLeave * set guicursor=a:ver100
+au VimLeave * set guicursor=a:ver100
 
 call plug#begin()
 
@@ -31,7 +31,9 @@ call plug#end()
 nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 inoremap <C-Z> <C-O>u
-
+xnoremap <Tab> >gv
+xnoremap <S-Tab> <gv
+xnoremap <BS> x
 
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
@@ -60,7 +62,7 @@ hi default CocUnderline cterm=underline gui=undercurl
 
 " --------- airline config -----------
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='afterglow'
+let g:airline_theme='sonokai'
 
 " --------- coc repo -------------------
 
@@ -80,7 +82,7 @@ set updatetime=300
 " diagnostics appear/become resolved
 set signcolumn=yes
 
-let g:coc_node_path = "$NVM_BIN/node" 
+let g:coc_node_path = "/home/bauer/.nvm/versions/node/v18.15.0/bin/node" 
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
