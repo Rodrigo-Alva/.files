@@ -1,1 +1,34 @@
+#pulseaudio-button * {
+        -gtk-icon-transform: scale(.6);
+}
 
+#xfce4-notification-plugin * {
+        -gtk-icon-transform: scale(.6);
+}
+
+#xfce4-power-manager-plugin * {
+        -gtk-icon-transform: scale(.6);
+}
+
+#whiskermenu-button * {
+        -gtk-icon-transform: scale(.8);
+}
+
+#showdesktop-button * {
+    -gtk-icon-transform: scale(.9);
+}
+
+.xfce4-panel {
+    border-radius: 10px;
+}
+
+.xfce4-panel * {
+    font-family: "Consolas";
+}
+
+VteTerminal, vte-terminal {
+        padding-left: 0px;
+        padding-right: 3px;
+        padding-top: 0px;
+        padding-bottom: 19px;
+}
