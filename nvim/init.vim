@@ -1,43 +1,52 @@
 set number
 set relativenumber
-set autoindent
-set tabstop=4
-set shiftwidth=4
+
+set smartindent
 set expandtab
+
+set shiftwidth=4
+set tabstop=4
 set softtabstop=4
-set mouse=a
+
 set backspace=2
 set clipboard+=unnamedplus
+
 set hidden
+
+set mouse=a
 set keymodel=startsel
 
 au VimLeave * set guicursor=a:ver100
 
 call plug#begin()
 
-Plug 'https://github.com/preservim/nerdtree' "File tree plugin | Nerdtree
-Plug 'https://github.com/vim-airline/vim-airline' "Status bar
+Plug 'preservim/nerdtree' "File tree plugin
+Plug 'vim-airline/vim-airline' "Status bar
 Plug 'vim-airline/vim-airline-themes' "airline themes
-Plug 'https://github.com/ap/vim-css-color' "CSS Color Preview
-Plug 'https://github.com/rafi/awesome-vim-colorschemes' "Retro Scheme
-Plug 'https://github.com/ryanoasis/vim-devicons' "Developer Icons
+Plug 'ap/vim-css-color' "CSS Color Preview
+Plug 'rafi/awesome-vim-colorschemes' "Retro Scheme
+Plug 'ryanoasis/vim-devicons' "Developer Icons
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "coc Completion
 Plug 'mg979/vim-visual-multi' "multiple cursors 
 Plug 'lambdalisue/suda.vim' "sudo
-Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs' "autoclosing for {[()]} etc
+Plug 'tribela/vim-transparent' "transparent bg
 
 call plug#end()
 
-nnoremap <C-f> :NERDTreeFocus<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-inoremap <C-Z> <C-O>u
-xnoremap <Tab> >gv
-xnoremap <S-Tab> <gv
+nnoremap <silent> <C-f> :NERDTreeFocus<CR>
+nnoremap <silent> <C-t> :NERDTreeToggle<CR>
+inoremap <silent> <C-Z> <C-O>u
+xnoremap <silent> <Tab> >gv
+xnoremap <silent> <S-Tab> <gv
 xnoremap <BS> x
-nmap <C-o> :bp <CR>
-nmap <C-p> :bn <CR>
+nmap <silent> <C-o> :bp <CR>
+nmap <silent> <C-p> :bn <CR>
 
 :colorscheme jellybeans
+
+nmap <silent> <M-S-T> :TransparentToggle <CR>
+
 
 let g:coc_disable_startup_warning = 1
 let NERDTreeShowHidden = 1
@@ -73,27 +82,17 @@ endfunction
 noremap <silent> <c-s-up> :call <SID>swap_up()<CR>
 noremap <silent> <c-s-down> :call <SID>swap_down()<CR>
 
-"--------- autoclose --------
-
-
-
-" ------- vimtex settings ----------
-" filetype plugin indent on
-" syntax enable
-" let g:vimtex_view_general_options = ''
-let g:vimtex_compiler_method = 'latexrun'
-" let g:vimtex_compiler_latexrun = 'pdflatex'
+" --------- duplicate lines in normal mode ------------
+nmap <silent> <C-S-D> :t.<CR>
 
 " ------------ texlab config -------
 hi default CocUnderline cterm=underline gui=undercurl
 
 " --------- airline config -----------
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='sonokai'
+let g:airline_theme='distinguished'
 
-" --------- coc repo -------------------
-
-
+" NOTE: stolen config hehe ------ coc repo settings ---------
 " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
 " utf-8 byte sequence
 set encoding=utf-8
@@ -110,7 +109,6 @@ set updatetime=300
 set signcolumn=yes
 
 let g:coc_node_path = "/home/bauer/.nvm/versions/node/v18.15.0/bin/node" 
-
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file
@@ -210,13 +208,13 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-" Remap <C-f> and <C-b> to scroll flot windows/popups
+" Remap <C-y> and <C-b> to scroll flot windows/popups
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-y>"
   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-y>"
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
@@ -256,3 +254,4 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>a
+
